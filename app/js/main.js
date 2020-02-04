@@ -16,7 +16,8 @@ let subhead = document.getElementsByClassName("chart-subhead"),
 
 Highcharts.setOptions({
     lang: {
-      thousandsSep: ','
+        thousandsSep: ',',
+        numericSymbols: [null, "M", "G", "T", "P", "E"]
     }
 });
 
@@ -40,7 +41,7 @@ setTimeout(function() {
 function drawHighcharts() {
     Highcharts.chart(chartId, {
         chart: {
-            type: 'bar',
+            type: 'scatter',
             styledMode: true,
             spacingBottom: 25,
             spacingRight: 100
@@ -49,7 +50,9 @@ function drawHighcharts() {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1emTlFRn0LG5YQWculO-zMoUUeVK5fCsCUBJzKaB_7o0',
+            googleSpreadsheetWorksheet: 2,
+            seriesMapping: [{x: 0, y: 1, name: 2, color: 3}],
         },
         // for bar charts only
         plotOptions: {
@@ -83,10 +86,15 @@ function drawHighcharts() {
         },
         xAxis: {
             labels: {
+                useHTML: true,
                 style: {
                     whiteSpace: 'nowrap'
+                },
+                formatter: function () {
+                    return Highcharts.numberFormat(this.value,0,'.',',');
                 }
             },
+            min: 0,
             tickLength: 5
         },
         yAxis: {
@@ -94,15 +102,39 @@ function drawHighcharts() {
             labels: {
                 useHTML: true,
                 overflow: 'allow'
-            }
+            },
+            min: 0,
+            max: 100000
         },
         credits: {
             enabled: false
         },
         tooltip: {
+            // useHTML: true,
             shadow: false,
-            padding: 10
+            padding: 10,
+            formatter: function() {
+                point = this.point;
+                html=  point.name
+                return html;
+            }
         },
+        annotations: [{
+            shapes: [{
+                type: 'path',
+                points: [{
+                    x: 0,
+                    y: 0,
+                    xAxis: 0,
+                    yAxis: 0
+                }, {
+                    x: 5000,
+                    y: 200000,
+                    xAxis: 0,
+                    yAxis: 0
+                }]
+            }],
+        }],
         responsive: {
             rules: [{
             condition: {
