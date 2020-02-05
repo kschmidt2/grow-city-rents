@@ -17,7 +17,6 @@ let subhead = document.getElementsByClassName("chart-subhead"),
 Highcharts.setOptions({
     lang: {
         thousandsSep: ',',
-        numericSymbols: [null, "M", "G", "T", "P", "E"]
     }
 });
 
@@ -44,7 +43,8 @@ function drawHighcharts() {
             type: 'scatter',
             styledMode: true,
             spacingBottom: 25,
-            spacingRight: 100
+            spacingRight: 100,
+            spacingLeft: 0
         }, 
         title: {
             text: null
@@ -78,13 +78,12 @@ function drawHighcharts() {
         //     }
         // },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
+            title: {
+                text: 'AVERAGE MONTHLY RENT',
+            },
             labels: {
                 useHTML: true,
                 style: {
@@ -95,10 +94,14 @@ function drawHighcharts() {
                 }
             },
             min: 0,
-            tickLength: 5
+            max: 5000,
+            tickLength: 0,
+            tickPosition: 'inside'
         },
         yAxis: {
-            title: false,
+            title: {
+                text: 'MEDIAN HOSUEHOLD INCOME',
+            },
             labels: {
                 useHTML: true,
                 overflow: 'allow'
@@ -134,6 +137,43 @@ function drawHighcharts() {
                     yAxis: 0
                 }]
             }],
+            labels: [{
+                point: {
+                    x: 5000,
+                    y: 58000,
+                    yAxis: 0,
+                    xAxis: 0
+                },
+                useHTML: true,
+                text: 'Manhattan, N.Y.'
+            }, {
+                point: {
+                    x: 800,
+                    y: 52000,
+                    yAxis: 0,
+                    xAxis: 0
+                },
+                useHTML: true,
+                text: 'Virginia Beach, Va.'
+            },{
+                point: {
+                    x: 4000,
+                    y: 92000,
+                    yAxis: 0,
+                    xAxis: 0
+                },
+                useHTML: true,
+                text: 'San Francisco'
+            },{
+                point: {
+                    x: 4000,
+                    y: 38000,
+                    yAxis: 0,
+                    xAxis: 0
+                },
+                useHTML: true,
+                text: 'Boston'
+            }],
         }],
         responsive: {
             rules: [{
@@ -148,10 +188,10 @@ function drawHighcharts() {
                     align: 'left',
                     x: -18
                 },
-                tooltip: {
-                    enabled: false
+                xAxis: {
+                    max: 6000
                 }
-            }
+            },
             }]
         }
     })

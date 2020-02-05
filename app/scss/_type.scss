@@ -62,9 +62,9 @@ $font-stack: 'Avenir', 'Avenir Next', 'Arial', sans-serif;
 
 .chart-source {
     &:before {
-        content: "Source: ";
+        content: "Sources: ";
     }
-    float: left;
+    // float: left;
     @include sm-md-xl {
         float: none;
         } 
@@ -78,11 +78,13 @@ $font-stack: 'Avenir', 'Avenir Next', 'Arial', sans-serif;
     font-size: 14px;
     line-height: 18px;
     fill: $slate-secondary-5;
-    & span {
-        background-color: white;
-        padding: 0 5px;
-        @include x-small {
-            background-color: rgba(#fff, .6)
+    &:first-child {
+        @include sm-md-xl {
+            left: 390px !important;
         }
+    }
+    & span {
+        background-color: $slate-secondary-2;
+        padding: 0 5px;
     }
 }
