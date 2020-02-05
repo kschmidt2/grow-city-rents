@@ -57,7 +57,11 @@ function drawHighcharts() {
         // for bar charts only
         plotOptions: {
             series: {
-                groupPadding: 0.1
+                states: {
+                    hover: {
+                        enabled: false,
+                    }
+                }
             } 
         },
         // for line charts only
@@ -100,7 +104,7 @@ function drawHighcharts() {
         },
         yAxis: {
             title: {
-                text: 'MEDIAN HOSUEHOLD INCOME',
+                text: 'MEDIAN HOSUEHOLD INCOME FOR RENTERS',
             },
             labels: {
                 useHTML: true,
@@ -144,7 +148,7 @@ function drawHighcharts() {
                     yAxis: 0,
                     xAxis: 0
                 },
-                useHTML: true,
+                // useHTML: true,
                 text: 'Manhattan, N.Y.'
             }, {
                 point: {
@@ -153,7 +157,7 @@ function drawHighcharts() {
                     yAxis: 0,
                     xAxis: 0
                 },
-                useHTML: true,
+                // useHTML: true,
                 text: 'Virginia Beach, Va.'
             },{
                 point: {
@@ -162,7 +166,6 @@ function drawHighcharts() {
                     yAxis: 0,
                     xAxis: 0
                 },
-                useHTML: true,
                 text: 'San Francisco'
             },{
                 point: {
@@ -171,7 +174,7 @@ function drawHighcharts() {
                     yAxis: 0,
                     xAxis: 0
                 },
-                useHTML: true,
+                // 
                 text: 'Boston'
             }],
         }],
